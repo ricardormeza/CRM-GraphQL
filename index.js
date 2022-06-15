@@ -1,8 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server');
  
- 
 // schema
-const typeDefs = gql `
+const typeDefs = gql`
     type Curso {
         titulo: String
         tecnologia: String
@@ -10,8 +9,10 @@ const typeDefs = gql `
 
     type Query {
         obtenerCursos: [Curso]
+        
     }
 `;
+
 const cursos = [{
         titulo: 'JavaScript Moderno Guía Definitiva Construye +10 Proyectos',
         tecnologia: 'JavaScript ES6',
@@ -30,13 +31,13 @@ const cursos = [{
     }
 ];
 // resolvers
- 
+
 const resolvers = {
     Query: {
-        obtenerCursos: () => cursos[0]
+        obtenerCursos: () => cursos
     }
 }
- 
+
 // servidor
 const server = new ApolloServer({
     typeDefs,
