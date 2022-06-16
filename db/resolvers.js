@@ -1,4 +1,5 @@
 const Usuario = require('../models/Usuario');
+const bcryptjs = require('bcryptjs');
 
 // resolvers
 const resolvers = {
@@ -19,6 +20,8 @@ const resolvers = {
             }
 
             //Hashear su password
+            const salt = bcryptjs.genSaltSync(10);
+            input.password = bcryptjs.hashSync(password, salt);
 
             try{
                 //Guardar en la base de datos
